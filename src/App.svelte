@@ -1,16 +1,23 @@
 <script>
   import svelteLogo from "./assets/svelte.svg";
   import Counter from "./lib/Counter.svelte";
-  import { onMount } from "svelte";
-  import Nav from "./Nav.svelte";
   import { cats } from "./Cats.js";
+  import MiniProfile from "./miniProfile.svelte";
+  const dataProfile = {
+    img: "https://www.zooplus.fr/magazine/wp-content/uploads/2019/08/chat-siberien-sur-un-lit.jpg",
+    name: "Mochi",
+    race: "Chat Sibérien",
+    age: "2 mois",
+  };
 </script>
 
 <main>
   <h1 class="bold">Annuaire de chats</h1>
+
   {#if $cats.length === 0}
     <p>Loading...</p>
   {:else}
+    <MiniProfile {...dataProfile} />
     <div class="container">
       {#each $cats as data}
         <div class="cats">
