@@ -8,13 +8,14 @@
   import Search from "./Search.svelte";
   import NotFound from "./NotFound.svelte";
   import Home from "./Home.svelte";
+  import AddCat from "./AddCat.svelte";
   const dataProfile = {
     img: "https://www.zooplus.fr/magazine/wp-content/uploads/2019/08/chat-siberien-sur-un-lit.jpg",
     name: "Mochi",
     race: "Chat Sibérien",
     age: "2 mois",
   };
-  const images = $cats.flatMap((data) => data.image.url);
+  const images = $cats.flatMap((data) => data.image?.url);
   let searchTerm = "";
   let filteredCats = [];
 
@@ -24,6 +25,23 @@
       return catName.includes(searchTerm.toLowerCase());
     }));
   };
+  function addToArray({ name, description, origin }) {
+    console.log("name", name);
+    $cats = [
+      ...$cats,
+      {
+        description,
+        image: {
+          id: "1",
+          height: 1,
+          width: 1,
+          url: "https://www.zooplus.fr/magazine/wp-content/uploads/2019/08/chat-siberien-sur-un-lit.jpg",
+        },
+        name,
+        origin,
+      },
+    ];
+  }
 </script>
 
 <main>
@@ -57,8 +75,9 @@
         />
       {/each}
     </div>
-    <Image {images} />
-    <Home />
+    <!-- <Image {images} />
+    <Home /> -->
+    <AddCat {addToArray} />
   {/if}
 </main>
 
