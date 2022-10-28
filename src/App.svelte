@@ -4,6 +4,7 @@
   import { cats } from "./Cats.js";
   import MiniProfile from "./miniProfile.svelte";
   import Image from "./Image.svelte";
+  import Cat from "./Cat.svelte";
   const dataProfile = {
     img: "https://www.zooplus.fr/magazine/wp-content/uploads/2019/08/chat-siberien-sur-un-lit.jpg",
     name: "Mochi",
@@ -22,14 +23,12 @@
     <MiniProfile {...dataProfile} />
     <div class="container">
       {#each $cats as data}
-        <div class="cats">
-          <div class="list-content">
-            <p class="title">{data.name}</p>
-            <p>{data.description}</p>
-            <p>Origine: {data.origin}</p>
-            <img src={data.image?.url} alt="cat" />
-          </div>
-        </div>
+        <Cat
+          name={data.name}
+          description={data.description}
+          origin={data.origin}
+          image={data.image}
+        />
       {/each}
     </div>
     <Image {images} />
@@ -45,31 +44,5 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-  }
-  .cats {
-    display: flex;
-    padding: 0.5em;
-    width: 400px;
-  }
-  .list-content {
-    display: flex;
-    flex-direction: column;
-    background-color: #fff;
-    justify-content: center;
-    padding: 1em;
-    width: 50%;
-  }
-  .list-content p {
-    flex: 1 0;
-  }
-  .title {
-    font-weight: 500;
-    font-size: 20px;
-  }
-  img {
-    width: 50vw;
-    height: 70vh;
-    max-width: 310px;
-    max-height: 250px;
   }
 </style>
