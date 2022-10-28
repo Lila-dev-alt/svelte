@@ -7,6 +7,7 @@
   import Cat from "./Cat.svelte";
   import Search from "./Search.svelte";
   import NotFound from "./NotFound.svelte";
+  import Home from "./Home.svelte";
   const dataProfile = {
     img: "https://www.zooplus.fr/magazine/wp-content/uploads/2019/08/chat-siberien-sur-un-lit.jpg",
     name: "Mochi",
@@ -57,6 +58,7 @@
       {/each}
     </div>
     <Image {images} />
+    <Home />
   {/if}
 </main>
 
